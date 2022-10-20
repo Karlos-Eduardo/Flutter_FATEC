@@ -24,10 +24,14 @@ class _TelaRelatoriosState extends State<TelaRelatorios> {
         MediaQuery.of(context).size.width < 500;
 
     Map<String, double> dataMap = {
-      "Largura": screenWidth,
-      "Altura": screenHeight,
-      "Concluídos": 298,
-      "Ionic": 256,
+      //"Largura": screenWidth,
+      //"Altura": screenHeight,
+      "Python": 27.61,
+      "Java": 17.64,
+      "JavaScript": 9.21,
+      "C#": 7.79,
+      "C/C++": 7.01,
+      "R": 4.26,
     };
 
     final gradientList = <List<Color>>[
@@ -56,9 +60,12 @@ class _TelaRelatoriosState extends State<TelaRelatorios> {
         actions: <Widget>[
           Padding(
               padding: const EdgeInsets.only(right: 15),
-              child: Icon(Icons.notifications,color: Colors.black))
+              child: Icon(Icons.notifications, color: Colors.black))
         ],
-        title: const Text('Relatórios',style: TextStyle(color: Colors.black),),
+        title: const Text(
+          'Relatórios',
+          style: TextStyle(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -95,7 +102,7 @@ class _TelaRelatoriosState extends State<TelaRelatorios> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text('teste'),
+                            Text(''),
                             PieChart(
                               dataMap: dataMap,
                               animationDuration: Duration(milliseconds: 1000),
@@ -304,7 +311,10 @@ class _TelaRelatoriosState extends State<TelaRelatorios> {
               margin: EdgeInsets.only(top: 10, bottom: 10),
               child: ElevatedButton(
                 onPressed: () {},
-                child: Text('Imprimir',style: TextStyle(color: Colors.black),),
+                child: Text(
+                  'Imprimir',
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ),
           ],
@@ -314,7 +324,10 @@ class _TelaRelatoriosState extends State<TelaRelatorios> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          )),
     );
   }
 }

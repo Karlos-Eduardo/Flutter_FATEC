@@ -16,12 +16,18 @@ class _TelaEquipeState extends State<TelaEquipe> {
     return Scaffold(
       drawer: const NavigationDrawer(),
       appBar: AppBar(
-          title: const Text('Equipe',style: TextStyle(color: Colors.black),),
+          title: const Text(
+            'Equipe',
+            style: TextStyle(color: Colors.black),
+          ),
           centerTitle: true,
           actions: <Widget>[
             Padding(
                 padding: const EdgeInsets.only(right: 15),
-                child: Icon(Icons.notifications,color: Colors.black,))
+                child: Icon(
+                  Icons.notifications,
+                  color: Colors.black,
+                ))
           ]),
       body: Column(
         children: [
@@ -52,7 +58,7 @@ class _TelaEquipeState extends State<TelaEquipe> {
                     Divider(
                       thickness: 4,
                     ),*/
-                    DataTable(dataRowHeight: 51, columns: [
+                    DataTable(columns: [
                       DataColumn(
                         label: Padding(
                           padding: const EdgeInsets.only(left: 15),
@@ -76,6 +82,18 @@ class _TelaEquipeState extends State<TelaEquipe> {
                           ],
                         )),
                         DataCell(Text('Técnico')),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            ClipOval(
+                                child:
+                                    Image.asset('lib/images/perfilhomem.png')),
+                            Text('Diego Moretti')
+                          ],
+                        )),
+                        DataCell(Text('Colaborador')),
                       ]),
                     ])
                   ],
@@ -119,7 +137,10 @@ class _TelaEquipeState extends State<TelaEquipe> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios,color: Colors.black,)),
+          child: Icon(
+            Icons.arrow_back_ios,
+            color: Colors.black,
+          )),
     );
   }
 }

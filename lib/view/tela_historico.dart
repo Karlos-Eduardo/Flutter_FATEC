@@ -3,6 +3,7 @@
 //import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TelaHistorico extends StatefulWidget {
   const TelaHistorico({Key? key}) : super(key: key);
@@ -12,16 +13,29 @@ class TelaHistorico extends StatefulWidget {
 }
 
 class _TelaHistoricoState extends State<TelaHistorico> {
+  final search = TextEditingController();
+  String titulo = "titulo";
+  String urgencia = "urgencia";
+
   @override
   Widget build(BuildContext context) {
+    double tam = MediaQuery.of(context).size.height / 10;
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(166, 0, 180, 216),
         actions: <Widget>[
-          Padding(padding: EdgeInsets.only(right: 15), child: Icon(Icons.notifications,color: Colors.black,))
+          Padding(
+              padding: EdgeInsets.only(right: 15),
+              child: Icon(
+                Icons.notifications,
+                color: Colors.black,
+              ))
         ],
-        title: Text('Histórico', style: TextStyle(color: Colors.black),),
+        title: Text(
+          'Histórico',
+          style: GoogleFonts.roboto(color: Colors.black),
+        ),
         centerTitle: true,
       ),
       body: Column(children: [
@@ -29,13 +43,14 @@ class _TelaHistoricoState extends State<TelaHistorico> {
           padding:
               const EdgeInsets.only(left: 10, right: 10, top: 10, bottom: 10),
           child: TextField(
+            controller: search,
             cursorColor: Colors.black,
             decoration: InputDecoration(
                 focusedBorder: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusColor: Colors.white,
                 suffixIcon: Icon(Icons.search, color: Colors.black87),
-                label: Text('Pesquisa'),
+                label: Text('Pesquisa',style: GoogleFonts.roboto(),),
                 labelStyle: TextStyle(color: Colors.black87),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
@@ -43,40 +58,54 @@ class _TelaHistoricoState extends State<TelaHistorico> {
           ),
         ),
         Container(
-            height: MediaQuery.of(context).size.height * 0.75,
-            color: Colors.white,
+            height: MediaQuery.of(context).size.height * 0.70,
             margin: EdgeInsets.all(15),
             child: ListView(children: [
-              for (var i in [
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                '',
-                ''
-              ])
-                ListTile(
-                  leading: Icon(Icons.messenger_outline_sharp),
-                  title: Text(i),
-                  onTap: () {},
-                ),
+              buildCard("Computador não liga", "Alta", tam),
+              buildCard("Impressora pegando fogo", "Baixa", tam),
+              buildCard("Wifi não funciona", "Intermediária", tam),
+              buildCard("Projetor não da imagem", "Alta", tam),
+              buildCard("Computador não da imagem", "Alta", tam),
+              buildCard("Computador sem som", "Baixa", tam),
+              buildCard("Computador", "Alta", tam),
+              buildCard("Impressora não imprime", "Intermediária", tam),
             ])),
       ]),
       floatingActionButton: FloatingActionButton(
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios,color: Colors.black)),
+          child: Icon(Icons.arrow_back_ios, color: Colors.black)),
     );
   }
+}
+
+buildCard(titu, urg, tamanho) {
+  return SizedBox(
+    height: tamanho,
+    child: Card(
+      elevation: 2,
+      color: Color.fromARGB(250, 113, 179, 245),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(
+            titu,
+            style: GoogleFonts.roboto(fontSize: 20),
+          ),
+          Text(urg, style: GoogleFonts.roboto()),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: [
+              Text(
+                '#000',
+                style: GoogleFonts.roboto(
+                    fontSize: 10, fontWeight: FontWeight.bold),
+              )
+            ],
+          ),
+        ],
+      ),
+    ),
+  );
 }

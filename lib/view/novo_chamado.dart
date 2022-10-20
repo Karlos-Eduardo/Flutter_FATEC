@@ -50,7 +50,27 @@ class _NovoChamadoState extends State<NovoChamado> {
             height: MediaQuery.of(context).size.height * 0.78,
             child: Column(
               children: [
-                buildTextFormField('Título', title),
+                //buildTextFormField('Título', title),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: TextFormField(
+                    maxLength: 40,
+                    maxLines: null,
+                    controller: title,
+                    cursorColor: Colors.black,
+                    decoration: InputDecoration(
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black87)),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.black87)),
+                      labelText: 'Título',
+                      floatingLabelBehavior: FloatingLabelBehavior.always,
+                      labelStyle: const TextStyle(color: Colors.black),
+                      focusColor: Colors.white,
+                      border: const OutlineInputBorder(),
+                    ),
+                  ),
+                ),
                 Spacer(),
                 Padding(
                   padding: EdgeInsets.all(8),
