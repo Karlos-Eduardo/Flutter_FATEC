@@ -33,7 +33,7 @@ void main() async {
                       (states) => Color.fromARGB(250, 113, 179, 245)))),
           appBarTheme: AppBarTheme(color: Color.fromARGB(166, 0, 180, 216))),
 
-      initialRoute: '/historico',
+      initialRoute: '/',
       routes: {
         '/': (context) => TelaLogin(),
         '/cadastroApp': (context) => CadastroApp(),
