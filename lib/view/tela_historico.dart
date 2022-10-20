@@ -1,6 +1,7 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 //import 'package:app_agni/models/logo.dart';
+import 'package:app_agni/models/build_card.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -50,7 +51,10 @@ class _TelaHistoricoState extends State<TelaHistorico> {
                     borderSide: BorderSide(color: Colors.black)),
                 focusColor: Colors.white,
                 suffixIcon: Icon(Icons.search, color: Colors.black87),
-                label: Text('Pesquisa',style: GoogleFonts.roboto(),),
+                label: Text(
+                  'Pesquisa',
+                  style: GoogleFonts.roboto(),
+                ),
                 labelStyle: TextStyle(color: Colors.black87),
                 border: OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.red),
@@ -78,34 +82,4 @@ class _TelaHistoricoState extends State<TelaHistorico> {
           child: Icon(Icons.arrow_back_ios, color: Colors.black)),
     );
   }
-}
-
-buildCard(titu, urg, tamanho) {
-  return SizedBox(
-    height: tamanho,
-    child: Card(
-      elevation: 2,
-      color: Color.fromARGB(250, 113, 179, 245),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Text(
-            titu,
-            style: GoogleFonts.roboto(fontSize: 20),
-          ),
-          Text(urg, style: GoogleFonts.roboto()),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Text(
-                '#000',
-                style: GoogleFonts.roboto(
-                    fontSize: 10, fontWeight: FontWeight.bold),
-              )
-            ],
-          ),
-        ],
-      ),
-    ),
-  );
 }
