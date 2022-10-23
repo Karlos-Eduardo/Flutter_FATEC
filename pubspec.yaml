@@ -41,7 +41,22 @@ dependencies:
   d_chart: ^0.0.4
   http: ^0.13.5
   google_fonts: ^3.0.1
+  flutter_native_splash: ^2.2.12
+  flutter_launcher_icons: ^0.10.0
   
+flutter_native_splash:
+  color: "#FFFFFF"
+  image: "lib/images/logo.png"
+  android: true
+  ios: true
+
+flutter_icons:
+  image_path: "lib/images/logo.png"
+  ios: true
+  remove_alpha_ios: true
+  android: "launcher_icon"
+  adaptive_icon_background: "#FFFFFF"
+  adaptive_icon_foreground: "lib/images/logo.png"
   
 dev_dependencies:
   flutter_test:
