@@ -1,9 +1,16 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
+//import 'package:app_agni/view/fotos_page.dart';
+import 'dart:io';
+
 import 'package:app_agni/models/build_textformfield.dart';
+import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/models/text_alert.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:image_picker/image_picker.dart';
 
 class TelaNovoColaborador extends StatefulWidget {
   const TelaNovoColaborador({Key? key}) : super(key: key);
@@ -18,6 +25,19 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
   final name = TextEditingController();
   final email = TextEditingController();
   final password = TextEditingController();
+
+  File? image;
+  Future pickImage(ImageSource source) async {
+    try {
+      final image = await ImagePicker().pickImage(source: source);
+      if (image == null) return;
+
+      final imageTemporary = File(image.path);
+      setState(() => this.image = imageTemporary);
+    } on PlatformException catch (e) {
+      print('Falha ao carregar imagem: $e');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +82,7 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                   buildTextFormField('E-mail', email),
                   buildTextFormField('Senha', password),
                   SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.35,
                     width: MediaQuery.of(context).size.width,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -74,23 +94,43 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                           Container(
                               height: MediaQuery.of(context).size.height / 4,
                               width: MediaQuery.of(context).size.width / 2,
-                              //color: Colors.white,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)),
-                              child: Center(
-                                  child: IconButton(
-                                      icon: Icon(
-                                        Icons.add,
-                                        size: 40,
-                                      ),
-                                      onPressed: () {
-                                        Navigator.of(context).pushNamed('/');
-                                      }))),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  image != null
+                                      ? Image.file(
+                                          image!,
+                                          width: 205,
+                                          height: 208.5,
+                                          fit: BoxFit.cover,
+                                        )
+                                      : Icon(
+                                          Icons.photo,
+                                          size: 40,
+                                        )
+                                  //logo(200, 200),
+                                ],
+                              )),
+                          Row(
+                            children: [
+                              IconButton(
+                                  onPressed: () =>
+                                      pickImage(ImageSource.gallery),
+                                  icon: Icon(Icons.image_outlined)),
+                              IconButton(
+                                  onPressed: () =>
+                                      pickImage(ImageSource.camera),
+                                  icon: Icon(Icons.camera_alt_outlined)),
+                            ],
+                          )
                         ]),
                         Column(children: [
                           Text('Tipo de usuário',
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 15)),
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 6, 0, 0),
+                                  fontSize: 15)),
                           Container(
                             width: MediaQuery.of(context).size.width / 2.5,
                             color: Colors.white,
@@ -153,6 +193,7 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                                           name.clear();
                                           email.clear();
                                           password.clear();
+                                          image = null;
                                         }),
                                   ]),
                           barrierDismissible: false);

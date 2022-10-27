@@ -80,7 +80,7 @@ class Sobre extends StatelessWidget {
                       TextButton(
                         style: TextButton.styleFrom(
                           textStyle: TextStyle(fontWeight: FontWeight.bold),
-                          primary: Colors.blue.shade900,
+                          foregroundColor: Colors.blue.shade900,
                         ),
                         onPressed: _launchUrl2,
                         child: Text('Github'),
@@ -108,7 +108,7 @@ class Sobre extends StatelessWidget {
                       TextButton(
                         style: TextButton.styleFrom(
                           textStyle: TextStyle(fontWeight: FontWeight.bold),
-                          primary: Colors.blue.shade900,
+                          foregroundColor: Colors.blue.shade900,
                         ),
                         onPressed: _launchUrl1,
                         child: Text('Github'),

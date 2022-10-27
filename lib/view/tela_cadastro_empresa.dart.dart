@@ -41,8 +41,8 @@ class _TelaCadastroState extends State<TelaCadastro> {
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          onPrimary: Colors.white,
-                          primary: Color.fromARGB(255, 3, 4, 94),
+                          foregroundColor: Colors.white,
+                          backgroundColor: Color.fromARGB(255, 3, 4, 94),
                           padding:
                               EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width * 0.2, vertical: 15)),
                       child: Text(
