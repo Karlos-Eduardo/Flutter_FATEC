@@ -1,6 +1,5 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
-
 import 'package:app_agni/models/campo_texto.dart';
 import 'package:app_agni/models/logo.dart';
 
@@ -41,13 +40,16 @@ class _TelaCadastroState extends State<TelaCadastro> {
                   ),
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
-                          foregroundColor: Colors.white,
-                          backgroundColor: Color.fromARGB(255, 3, 4, 94),
-                          padding:
-                              EdgeInsets.symmetric(horizontal:MediaQuery.of(context).size.width * 0.2, vertical: 15)),
+                          padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.2,
+                              vertical: 15)),
                       child: Text(
                         'Enviar',
-                        style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black),
                       ),
                       onPressed: () =>
                           Navigator.of(context).pushReplacementNamed('/')),

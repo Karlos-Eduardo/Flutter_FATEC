@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "930669882378",
-    "project_id": "app-agni-69a87",
-    "storage_bucket": "app-agni-69a87.appspot.com"
+    "project_number": "767513700559",
+    "project_id": "app-agni-7cbe5",
+    "storage_bucket": "app-agni-7cbe5.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:930669882378:android:4792f4b50e9201766643f3",
+        "mobilesdk_app_id": "1:767513700559:android:9f77fc07a7ae2b8e732fba",
         "android_client_info": {
           "package_name": "com.example.app_agni"
         }
       },
       "oauth_client": [
         {
-          "client_id": "930669882378-5cvg7jgkn8tomp0i8nek1lviek5mmogq.apps.googleusercontent.com",
+          "client_id": "767513700559-81gu4cirkj9a212o614kqn960mgq6uqt.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCtvM7UPw2b89oiMkY0BHURkZxBwib4zrE"
+          "current_key": "AIzaSyAmYGnOQHgwgeVuiVDRAJSGxh0P4ymSj3Q"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "930669882378-5cvg7jgkn8tomp0i8nek1lviek5mmogq.apps.googleusercontent.com",
+              "client_id": "767513700559-81gu4cirkj9a212o614kqn960mgq6uqt.apps.googleusercontent.com",
               "client_type": 3
             }
           ]

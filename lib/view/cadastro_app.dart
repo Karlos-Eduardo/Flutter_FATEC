@@ -34,105 +34,36 @@ class _CadastroAppState extends State<CadastroApp> {
             Container(
               height: 50,
             ),
+            campoTextoCadastro(name, 'Nome', Icons.badge, keyboardType: null),
+            campoTextoCadastro(telephone, 'Telefone', Icons.contact_phone,
+                hintText: '(DDD)9999-9999', keyboardType: 'phone'),
+            campoTextoCadastro(email, 'E-mail', Icons.email,
+                hintText: 'exemplo@gmail.com'),
             SizedBox(
               height: 80,
               width: MediaQuery.of(context).size.width,
               child: Padding(
                 padding: const EdgeInsets.all(2.0),
                 child: TextFormField(
-                  controller: name,
+                  controller: password,
                   cursorColor: Colors.black,
+                  obscureText: isPasswordVisible,
                   decoration: InputDecoration(
                     focusedBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
-                    prefixIcon: Icon(Icons.badge, color: Colors.black),
-                    labelText: 'Nome',
+                    prefixIcon: Icon(Icons.key, color: Colors.black),
+                    suffixIcon: IconButton(
+                        icon: isPasswordVisible
+                            ? Icon(Icons.visibility_off, color: Colors.black)
+                            : Icon(Icons.visibility, color: Colors.black),
+                        onPressed: () => setState(
+                            () => isPasswordVisible = !isPasswordVisible)),
+                    labelText: 'Senha',
                     labelStyle: TextStyle(color: Colors.black),
                     border: UnderlineInputBorder(),
                   ),
                 ),
               ),
-            ),
-            SizedBox(
-              height: 80,
-              width: MediaQuery.of(context).size.width,
-              child: Padding(
-                padding: const EdgeInsets.all(2.0),
-                child: TextFormField(
-                  controller: telephone,
-                  keyboardType: TextInputType.phone,
-                  cursorColor: Colors.black,
-                  decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
-                    prefixIcon: Icon(Icons.contact_phone, color: Colors.black),
-                    labelText: 'Telefone',
-                    labelStyle: TextStyle(color: Colors.black),
-                    hintText: '(DDD)9999-9999',
-                    border: UnderlineInputBorder(),
-                  ),
-                ),
-              ),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: TextFormField(
-                      controller: email,
-                      cursorColor: Colors.black,
-                      autofocus: false,
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        labelText: 'E-mail',
-                        labelStyle: TextStyle(color: Colors.black),
-                        hintText: 'exemplo@gmail.com',
-                        focusColor: Colors.black,
-                        prefixIcon: Icon(Icons.email, color: Colors.black),
-                        border: UnderlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  height: 80,
-                  width: MediaQuery.of(context).size.width,
-                  child: Padding(
-                    padding: const EdgeInsets.all(2.0),
-                    child: TextFormField(
-                      controller: password,
-                      cursorColor: Colors.black,
-                      obscureText: isPasswordVisible,
-                      decoration: InputDecoration(
-                        focusedBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.black)),
-                        prefixIcon: Icon(Icons.key, color: Colors.black),
-                        suffixIcon: IconButton(
-                            icon: isPasswordVisible
-                                ? Icon(Icons.visibility_off,
-                                    color: Colors.black)
-                                : Icon(Icons.visibility, color: Colors.black),
-                            onPressed: () => setState(
-                                () => isPasswordVisible = !isPasswordVisible)),
-                        labelText: 'Senha',
-                        labelStyle: TextStyle(color: Colors.black),
-                        border: UnderlineInputBorder(),
-                      ),
-                    ),
-                  ),
-                ),
-              ],
             ),
             Expanded(child: SizedBox()),
             ElevatedButton(
@@ -175,16 +106,42 @@ class _CadastroAppState extends State<CadastroApp> {
                                       telephone.clear();
                                       email.clear();
                                       password.clear();
-                                      Navigator.of(context).pushReplacementNamed('/');
+                                      Navigator.of(context)
+                                          .pushReplacementNamed('/');
                                     }),
                               ]),
                       barrierDismissible: false);
-                  
                 }),
             Expanded(child: SizedBox()),
           ],
         ),
       ),
     ));
+  }
+
+  campoTextoCadastro(variable, label, icone, {hintText = '', keyboardType}) {
+    return SizedBox(
+      height: 80,
+      child: Padding(
+        padding: const EdgeInsets.all(2.0),
+        child: TextFormField(
+          controller: variable,
+          keyboardType: (keyboardType == 'phone')
+              ? TextInputType.phone
+              : TextInputType.text,
+          cursorColor: Colors.black,
+          obscureText: isPasswordVisible,
+          decoration: InputDecoration(
+            focusedBorder: UnderlineInputBorder(
+                borderSide: BorderSide(color: Colors.black)),
+            prefixIcon: Icon(icone, color: Colors.black),
+            labelText: label,
+            hintText: hintText,
+            labelStyle: TextStyle(color: Colors.black),
+            border: UnderlineInputBorder(),
+          ),
+        ),
+      ),
+    );
   }
 }

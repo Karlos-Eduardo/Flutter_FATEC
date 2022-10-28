@@ -13,15 +13,15 @@ Widget campoTexto(rotulo) {
           padding: const EdgeInsets.all(2),
           child: TextFormField(
             cursorColor: Colors.black,
-            autofocus: true,
+            //autofocus: true,
             keyboardType: TextInputType.emailAddress,
             decoration: InputDecoration(
               focusedBorder: UnderlineInputBorder(
                   borderSide: BorderSide(color: Colors.black)),
               labelText: rotulo,
-              labelStyle: TextStyle(color: Colors.white),
+              labelStyle: TextStyle(color: Color.fromARGB(255, 26, 4, 4)),
 
-              focusColor: Colors.white,
+              focusColor: Color.fromARGB(255, 14, 2, 2),
               //prefixIcon: Icon(Icons.email, color: Colors.black),
               border: UnderlineInputBorder(),
             ),

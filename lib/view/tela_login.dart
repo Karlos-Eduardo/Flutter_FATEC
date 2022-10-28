@@ -38,7 +38,7 @@ class _TelaLoginState extends State<TelaLogin> {
               Expanded(child: SizedBox()),
               logo(150, 150),
               Container(
-                height: 60,
+                height: MediaQuery.of(context).size.height * 0.1,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -91,7 +91,6 @@ class _TelaLoginState extends State<TelaLogin> {
                               borderSide: BorderSide(color: Colors.black)),
                           prefixIcon: Icon(Icons.key, color: Colors.black),
                           labelText: 'Senha',
-                          //errorText: 'Senha errada...',
                           suffixIcon: IconButton(
                               icon: isPasswordVisible
                                   ? Icon(Icons.visibility_off,

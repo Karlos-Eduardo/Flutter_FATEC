@@ -1,4 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'package:app_agni/view/cadastro_app.dart';
 import 'package:app_agni/view/novo_chamado.dart';
@@ -13,7 +15,13 @@ import 'package:app_agni/view/equipe.dart';
 import 'package:app_agni/view/relatorios.dart';
 import 'package:flutter/material.dart';
 
-void main() async {
+Future<void> main() async {
+  //
+  // INICIALIZAÇÃO DO FIREBASE
+  //
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(
     MaterialApp(
       //definir a tela que será carregada
@@ -33,7 +41,7 @@ void main() async {
                       (states) => Color.fromARGB(250, 113, 179, 245)))),
           appBarTheme: AppBarTheme(color: Color.fromARGB(166, 0, 180, 216))),
 
-      initialRoute: '/novoColaborador',
+      initialRoute: '/',
       routes: {
         '/': (context) => TelaLogin(),
         '/cadastroApp': (context) => CadastroApp(),

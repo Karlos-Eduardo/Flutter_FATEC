@@ -4,7 +4,6 @@
 import 'dart:io';
 
 import 'package:app_agni/models/build_textformfield.dart';
-import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/models/text_alert.dart';
 import 'package:flutter/cupertino.dart';
@@ -110,7 +109,6 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                                           Icons.photo,
                                           size: 40,
                                         )
-                                  //logo(200, 200),
                                 ],
                               )),
                           Row(

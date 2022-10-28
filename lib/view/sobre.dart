@@ -122,7 +122,7 @@ class Sobre extends StatelessWidget {
           Expanded(child: SizedBox()),
         ]),
       ),
-      //backgroundColor: Color.fromARGB(166, 255, 255, 255),
+      
     );
   }
 }
