@@ -25,7 +25,10 @@ class DefaultFirebaseOptions {
       case TargetPlatform.iOS:
         return ios;
       case TargetPlatform.macOS:
-        return macos;
+        throw UnsupportedError(
+          'DefaultFirebaseOptions have not been configured for macos - '
+          'you can reconfigure this by running the FlutterFire CLI again.',
+        );
       case TargetPlatform.windows:
         throw UnsupportedError(
           'DefaultFirebaseOptions have not been configured for windows - '
@@ -44,39 +47,29 @@ class DefaultFirebaseOptions {
   }
 
   static const FirebaseOptions web = FirebaseOptions(
-    apiKey: 'AIzaSyCO8_UL6SiWRYFznGd-C_DxFMgLHMK0eZk',
-    appId: '1:767513700559:web:7fa77f0dacae6f58732fba',
-    messagingSenderId: '767513700559',
-    projectId: 'app-agni-7cbe5',
-    authDomain: 'app-agni-7cbe5.firebaseapp.com',
-    storageBucket: 'app-agni-7cbe5.appspot.com',
+    apiKey: 'AIzaSyCCo7wZ4PdGCdVWbMBsRtvUj6apI0EwAmU',
+    appId: '1:310283961386:web:9e3e5c5b42ff8107cfaf53',
+    messagingSenderId: '310283961386',
+    projectId: 'app-agni-d27b9',
+    authDomain: 'app-agni-d27b9.firebaseapp.com',
+    storageBucket: 'app-agni-d27b9.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
-    apiKey: 'AIzaSyAmYGnOQHgwgeVuiVDRAJSGxh0P4ymSj3Q',
-    appId: '1:767513700559:android:9f77fc07a7ae2b8e732fba',
-    messagingSenderId: '767513700559',
-    projectId: 'app-agni-7cbe5',
-    storageBucket: 'app-agni-7cbe5.appspot.com',
+    apiKey: 'AIzaSyD_Z5WA_-MDLsroKEeU7imtrlpxS00pLLc',
+    appId: '1:310283961386:android:15a834755b73c495cfaf53',
+    messagingSenderId: '310283961386',
+    projectId: 'app-agni-d27b9',
+    storageBucket: 'app-agni-d27b9.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
-    apiKey: 'AIzaSyC6xZ6io60A0V8pZ5QckbB1D0jsMZu_OMg',
-    appId: '1:767513700559:ios:08f9e77b1d3d9240732fba',
-    messagingSenderId: '767513700559',
-    projectId: 'app-agni-7cbe5',
-    storageBucket: 'app-agni-7cbe5.appspot.com',
-    iosClientId: '767513700559-r6fc6hsl2p0nvrtpn55h03do25p0snqg.apps.googleusercontent.com',
-    iosBundleId: 'com.example.appAgni',
-  );
-
-  static const FirebaseOptions macos = FirebaseOptions(
-    apiKey: 'AIzaSyC6xZ6io60A0V8pZ5QckbB1D0jsMZu_OMg',
-    appId: '1:767513700559:ios:08f9e77b1d3d9240732fba',
-    messagingSenderId: '767513700559',
-    projectId: 'app-agni-7cbe5',
-    storageBucket: 'app-agni-7cbe5.appspot.com',
-    iosClientId: '767513700559-r6fc6hsl2p0nvrtpn55h03do25p0snqg.apps.googleusercontent.com',
+    apiKey: 'AIzaSyAbFCnMQxmdJwf11jnqYm-yGE3XUJjPyNY',
+    appId: '1:310283961386:ios:632d91f874bd06fbcfaf53',
+    messagingSenderId: '310283961386',
+    projectId: 'app-agni-d27b9',
+    storageBucket: 'app-agni-d27b9.appspot.com',
+    iosClientId: '310283961386-3mt54v5e9e9du2qg4id1fsbdpqf26t1g.apps.googleusercontent.com',
     iosBundleId: 'com.example.appAgni',
   );
 }

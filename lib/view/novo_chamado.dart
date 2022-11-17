@@ -1,4 +1,5 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/build_textformfield.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/models/text_alert.dart';
@@ -47,7 +48,7 @@ class _NovoChamadoState extends State<NovoChamado> {
             height: 10,
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height * 0.78,
+            height: MediaQuery.of(context).size.height * 0.78 + 35,
             child: Column(
               children: [
                 buildTextFormField('Título', title,
@@ -72,7 +73,6 @@ class _NovoChamadoState extends State<NovoChamado> {
                       isExpanded: true,
                       iconSize: 24,
                       dropdownColor: Colors.white,
-                      //focusColor: Colors.black87,
                       iconEnabledColor: Color.fromARGB(255, 0, 0, 0),
                       hint: Text('Selecione'),
                       value: selectedItem,
@@ -153,6 +153,11 @@ class _NovoChamadoState extends State<NovoChamado> {
                                               style: TextStyle(
                                                   color: Colors.black)),
                                           onPressed: () {
+                                            ChamadosController().criarChamado(
+                                                context,
+                                                title.text,
+                                                selectedItem,
+                                                description.text);
                                             Navigator.of(context).pop();
                                             title.clear();
                                             description.clear();

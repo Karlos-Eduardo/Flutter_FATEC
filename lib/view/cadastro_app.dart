@@ -1,5 +1,6 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:app_agni/controller/login_controller.dart';
 import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/text_alert.dart';
 import 'package:flutter/cupertino.dart';
@@ -13,7 +14,7 @@ class CadastroApp extends StatefulWidget {
 }
 
 class _CadastroAppState extends State<CadastroApp> {
-  bool isPasswordVisible = true;
+  bool isPasswordVisible = false;
   final name = TextEditingController();
   final telephone = TextEditingController();
   final email = TextEditingController();
@@ -101,13 +102,16 @@ class _CadastroAppState extends State<CadastroApp> {
                                     child: Text('Confirmar',
                                         style: TextStyle(color: Colors.black)),
                                     onPressed: () {
+                                      LoginController().criarConta(context,
+                                          name.text, email.text, password.text,telephone.text);
+
                                       Navigator.of(context).pop();
                                       name.clear();
                                       telephone.clear();
                                       email.clear();
                                       password.clear();
                                       Navigator.of(context)
-                                          .pushReplacementNamed('/');
+                                      .pushReplacementNamed('/');
                                     }),
                               ]),
                       barrierDismissible: false);
@@ -130,7 +134,7 @@ class _CadastroAppState extends State<CadastroApp> {
               ? TextInputType.phone
               : TextInputType.text,
           cursorColor: Colors.black,
-          obscureText: isPasswordVisible,
+          //obscureText: isPasswordVisible,
           decoration: InputDecoration(
             focusedBorder: UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.black)),

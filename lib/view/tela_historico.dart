@@ -1,8 +1,10 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 //import 'package:app_agni/models/logo.dart';
+import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/build_card.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
+import 'package:app_agni/view/chamados_exibir_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -17,6 +19,9 @@ class _TelaHistoricoState extends State<TelaHistorico> {
   final search = TextEditingController();
   String titulo = "titulo";
   String urgencia = "urgencia";
+
+  //Lista retornada do firebase
+  var chamados = ChamadosController().listarHistorico();
 
   @override
   Widget build(BuildContext context) {
@@ -62,18 +67,19 @@ class _TelaHistoricoState extends State<TelaHistorico> {
           ),
         ),
         Container(
-            height: MediaQuery.of(context).size.height * 0.70,
-            margin: EdgeInsets.all(15),
-            child: ListView(children: [
-              buildCard("Computador não liga", "Alta", tam),
-              buildCard("Impressora pegando fogo", "Baixa", tam),
-              buildCard("Wifi não funciona", "Intermediária", tam),
-              buildCard("Projetor não da imagem", "Alta", tam),
-              buildCard("Computador não da imagem", "Alta", tam),
-              buildCard("Computador sem som", "Baixa", tam),
-              buildCard("Computador", "Alta", tam),
-              buildCard("Impressora não imprime", "Intermediária", tam),
-            ])),
+          height: MediaQuery.of(context).size.height * 0.70 - 16,
+          margin: EdgeInsets.all(15),
+          child:
+              //
+              // EXIBIR TAREFAS
+              //
+              ChamadosExibirController(
+            chamados,
+            Color.fromARGB(250, 113, 179, 245),
+            Icons.delete,
+            '4',
+          ),
+        ),
       ]),
       floatingActionButton: FloatingActionButton(
           onPressed: () {

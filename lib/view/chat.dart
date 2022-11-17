@@ -1,6 +1,8 @@
 //ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class TelaChat extends StatefulWidget {
   const TelaChat({Key? key}) : super(key: key);
@@ -109,25 +111,24 @@ class _TelaChatState extends State<TelaChat> {
                               ),
                             ),
                           ),
-                          Container(
-                            margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-                            decoration: BoxDecoration(
-                              color: Color.fromARGB(255, 0, 168, 67),
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(100),
-                              ),
-                            ),
-                            child: Padding(
-                                padding: EdgeInsets.all(8),
-                                child: Center(
-                                  child: IconButton(
-                                    icon: Icon(
-                                      Icons.mic,
-                                      size: 34,
-                                    ),
-                                    onPressed: () {},
-                                  ),
-                                )),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 10, right: 10),
+                            child: SpeedDial(
+                                animatedIcon: AnimatedIcons.menu_close,
+                                overlayColor: Colors.white,
+                                overlayOpacity: 0.6,
+                                closeManually: true,
+                                children: [
+                                  SpeedDialChild(
+                                      child: Icon(FontAwesomeIcons.microphone),
+                                      onTap: () {}),
+                                  SpeedDialChild(
+                                      child: Icon(Icons.camera_alt_outlined)),
+                                  SpeedDialChild(
+                                      child: Icon(Icons.image_outlined)),
+                                  SpeedDialChild(
+                                      child: Icon(Icons.attach_file_outlined)),
+                                ]),
                           ),
                         ],
                       ),

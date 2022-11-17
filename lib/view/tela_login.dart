@@ -1,7 +1,10 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:app_agni/controller/login_controller.dart';
 import 'package:app_agni/models/logo.dart';
+import 'package:app_agni/models/util.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class TelaLogin extends StatefulWidget {
   const TelaLogin({Key? key}) : super(key: key);
@@ -12,6 +15,7 @@ class TelaLogin extends StatefulWidget {
 
 class _TelaLoginState extends State<TelaLogin> {
   final emailController = TextEditingController();
+  final password = TextEditingController();
 
   bool isPasswordVisible = true;
 
@@ -85,6 +89,7 @@ class _TelaLoginState extends State<TelaLogin> {
                     child: Padding(
                       padding: const EdgeInsets.all(2.0),
                       child: TextFormField(
+                        controller: password,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
                           focusedBorder: UnderlineInputBorder(
@@ -113,7 +118,7 @@ class _TelaLoginState extends State<TelaLogin> {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
-                          //primary: Color.fromARGB(255, 3, 4, 94),
+                          
                           padding: EdgeInsets.symmetric(
                               horizontal:
                                   MediaQuery.of(context).size.width * 0.2,
@@ -123,8 +128,9 @@ class _TelaLoginState extends State<TelaLogin> {
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
-                      onPressed: () => Navigator.of(context)
-                          .pushReplacementNamed('/telaGestor')),
+                      onPressed: () => LoginController()
+                      .login(context, emailController.text, password.text)
+                      ),
                   TextButton(
                     style: TextButton.styleFrom(
                         textStyle: TextStyle(color: Colors.black)),
@@ -153,13 +159,99 @@ class _TelaLoginState extends State<TelaLogin> {
                       child: const Text('Contrate um plano'),
                     ),
                     Expanded(child: SizedBox()),
-                    TextButton(
+                    /*TextButton(
                       style: TextButton.styleFrom(
                         textStyle: const TextStyle(fontSize: 20),
                         foregroundColor: Colors.black,
                       ),
                       onPressed: () {},
                       child: const Text('Recuperar senha'),
+                    ),*/
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        TextButton(
+                          child: Text(
+                            "Recuperar senha",
+                            style: GoogleFonts.roboto(
+                              fontSize: 20,
+                              color: Colors.black,
+                            ),
+                          ),
+                          onPressed: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text(
+                                  'Informe seu e-mail',
+                                  style: GoogleFonts.roboto(
+                                    fontSize: 24,
+                                    color: Colors.blueGrey.shade700,
+                                  ),
+                                ),
+                                titlePadding: EdgeInsets.all(20),
+                                content: SizedBox(
+                                  width: 350,
+                                  height: 80,
+                                  child: Column(
+                                    children: [
+                                      campoTexto2('E-mail', Icons.email,
+                                          emailController),
+                                    ],
+                                  ),
+                                ),
+                                backgroundColor: Colors.blueGrey.shade50,
+                                actionsPadding:
+                                    EdgeInsets.fromLTRB(0, 0, 20, 20),
+                                actions: [
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      minimumSize: Size(120, 50),
+                                    ),
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      'cancelar',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 20,
+                                        color: Colors.blueAccent.shade700,
+                                      ),
+                                    ),
+                                  ),
+                                  TextButton(
+                                    style: TextButton.styleFrom(
+                                      backgroundColor:
+                                          Colors.blueAccent.shade700,
+                                      minimumSize: Size(120, 50),
+                                    ),
+                                    onPressed: () async {
+                                      if (emailController.text.isNotEmpty) {
+                                        LoginController().esqueceuSenha(
+                                            emailController.text);
+                                        sucesso(context,
+                                            'E-mail enviado com sucesso.');
+                                      } else {
+                                        erro(context,
+                                            'Informe o e-mail para recuperar a senha.');
+                                      }
+
+                                      Navigator.pop(context);
+                                    },
+                                    child: Text(
+                                      'enviar',
+                                      style: GoogleFonts.roboto(
+                                        fontSize: 20,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                        ),
+                      ],
                     ),
                   ],
                 ),

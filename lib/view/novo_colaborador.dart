@@ -3,6 +3,7 @@
 //import 'package:app_agni/view/fotos_page.dart';
 import 'dart:io';
 
+import 'package:app_agni/controller/colaborador_controller.dart';
 import 'package:app_agni/models/build_textformfield.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/models/text_alert.dart';
@@ -25,6 +26,8 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
   final email = TextEditingController();
   final password = TextEditingController();
 
+  final loading = ValueNotifier<bool>(false);
+
   File? image;
   Future pickImage(ImageSource source) async {
     try {
@@ -32,7 +35,10 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
       if (image == null) return;
 
       final imageTemporary = File(image.path);
-      setState(() => this.image = imageTemporary);
+      setState(() {
+        loading.value = !loading.value;
+        this.image = imageTemporary;
+      });
     } on PlatformException catch (e) {
       print('Falha ao carregar imagem: $e');
     }
@@ -73,7 +79,7 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                   ]),
             ),
             SizedBox(
-              height: MediaQuery.of(context).size.height * 0.78,
+              height: MediaQuery.of(context).size.height * 0.78 + 26,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -95,31 +101,53 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                               width: MediaQuery.of(context).size.width / 2,
                               decoration: BoxDecoration(
                                   border: Border.all(color: Colors.black)),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                  image != null
-                                      ? Image.file(
-                                          image!,
-                                          width: 205,
-                                          height: 208.5,
-                                          fit: BoxFit.cover,
-                                        )
-                                      : Icon(
-                                          Icons.photo,
-                                          size: 40,
-                                        )
-                                ],
-                              )),
+                              child: AnimatedBuilder(
+                                  animation: loading,
+                                  builder: (context, _) {
+                                    return loading.value
+                                        ? Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              SizedBox(
+                                                width: 40,
+                                                height: 40,
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              ),
+                                            ],
+                                          )
+                                        : Column(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            children: [
+                                              image != null
+                                                  ? Image.file(
+                                                      image!,
+                                                      width: 205,
+                                                      height: 208.5,
+                                                      fit: BoxFit.cover,
+                                                    )
+                                                  : Icon(
+                                                      Icons.photo,
+                                                      size: 40,
+                                                    )
+                                            ],
+                                          );
+                                  })),
                           Row(
                             children: [
                               IconButton(
-                                  onPressed: () =>
-                                      pickImage(ImageSource.gallery),
+                                  onPressed: () {
+                                    loading.value = !loading.value;
+                                    pickImage(ImageSource.gallery);
+                                  },
                                   icon: Icon(Icons.image_outlined)),
                               IconButton(
-                                  onPressed: () =>
-                                      pickImage(ImageSource.camera),
+                                  onPressed: () {
+                                    loading.value = !loading.value;
+                                    pickImage(ImageSource.camera);
+                                  },
                                   icon: Icon(Icons.camera_alt_outlined)),
                             ],
                           )
@@ -187,11 +215,14 @@ class _TelaNovoColaboradorState extends State<TelaNovoColaborador> {
                                             style:
                                                 TextStyle(color: Colors.black)),
                                         onPressed: () {
+                                          ColaboradorController()
+                                              .novoColaborador(context, name.text,
+                                                  email.text, password.text,selectedItem);
                                           Navigator.of(context).pop();
                                           name.clear();
                                           email.clear();
                                           password.clear();
-                                          image = null;
+                                          setState(() => image = null);
                                         }),
                                   ]),
                           barrierDismissible: false);

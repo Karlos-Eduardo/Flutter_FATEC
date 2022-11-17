@@ -2,8 +2,10 @@
 
 import 'dart:io';
 
+import 'package:app_agni/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:image_picker/image_picker.dart';
 
 class NavigationDrawer extends StatefulWidget {
@@ -44,7 +46,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             child: Column(
               children: [
                 const SizedBox(
-                  height: 10,
+                  height: 5,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -78,6 +80,35 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ),
                   ],
                 ),
+                FutureBuilder<String>(
+                  future: LoginController().retornarUsuarioLogado(),
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return CircularProgressIndicator();
+                    } else if (snapshot.connectionState ==
+                        ConnectionState.done) {
+                      if (snapshot.hasError) {
+                        return const Text('Error');
+                      } else if (snapshot.hasData) {
+                        return Text(
+                          snapshot.data.toString(),
+                          overflow: TextOverflow.ellipsis,
+                          style: GoogleFonts.roboto(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontWeight: FontWeight.w400,
+                            fontStyle: FontStyle.italic,
+                          ),
+                        );
+                      } else {
+                        return const Text('Empty data');
+                      }
+                    } else {
+                      return Text('State: ${snapshot.connectionState}');
+                    }
+                  },
+                ),
+                /*
                 Text(
                   'Gestor',
                   style: TextStyle(
@@ -86,9 +117,9 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     fontWeight: FontWeight.w400,
                     fontStyle: FontStyle.italic,
                   ),
-                ),
+                ),*/
                 const SizedBox(
-                  height: 5,
+                  height: 2,
                 ),
                 Text(
                   'gestor@gmail.com',
@@ -150,11 +181,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
             onTap: () => {Navigator.of(context).pushNamed('/relatorios')},
           ),
           Divider(thickness: 1),
-
-          /*Expanded(
-              child: SizedBox(
-            height: MediaQuery.of(context).size.height * 0.27,
-          )),*/
           ListTile(
             leading: Icon(Icons.info_outline),
             title: Text(
@@ -162,6 +188,17 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => {Navigator.of(context).pushNamed('/sobre')},
+          ),
+          ListTile(
+            leading: Icon(Icons.logout_outlined),
+            title: Text(
+              'Sair',
+              style: TextStyle(fontSize: 20),
+            ),
+            onTap: () {
+              LoginController().logout();
+              Navigator.of(context).pushReplacementNamed('/');
+            },
           ),
         ],
       ),
