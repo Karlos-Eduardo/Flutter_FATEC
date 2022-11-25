@@ -2,33 +2,31 @@
 
 import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
-import 'package:app_agni/view/chamados_exibir_widget.dart';
+import 'package:app_agni/view/chamados_criados.dart';
+import 'package:app_agni/view/chamados_andamento.dart';
 import 'package:flutter/material.dart';
 
 import 'package:google_fonts/google_fonts.dart';
 
-class TelaGestor extends StatefulWidget {
-  const TelaGestor({Key? key}) : super(key: key);
+class TelaPrincipal extends StatefulWidget {
+  const TelaPrincipal({Key? key}) : super(key: key);
 
   @override
-  State<TelaGestor> createState() => _TelaGestorState();
+  State<TelaPrincipal> createState() => _TelaPrincipalState();
 }
 
-class _TelaGestorState extends State<TelaGestor> {
+class _TelaPrincipalState extends State<TelaPrincipal> {
   var chamados = ChamadosController().listar('0');
+
+  // Telas de Navegecao
+  final List<Widget> telas = [ChamadosCriados(), ChamadosEmAndamento()];
+  int index = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
-        actions: <Widget>[
-          Padding(
-              padding: EdgeInsets.only(right: 15),
-              child: Icon(
-                Icons.notifications,
-                color: Colors.black,
-              ))
-        ],
         title: Text(
           'Home',
           style: TextStyle(color: Colors.black),
@@ -37,7 +35,7 @@ class _TelaGestorState extends State<TelaGestor> {
       ),
       body: SingleChildScrollView(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
@@ -61,7 +59,7 @@ class _TelaGestorState extends State<TelaGestor> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.20,
-              margin: EdgeInsets.only(bottom: 80, top: 100),
+              margin: EdgeInsets.only(bottom: 20, top: 25),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -84,20 +82,25 @@ class _TelaGestorState extends State<TelaGestor> {
                         label: Text(''))
                   ]),
             ),
-            Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height / 2,
-              
-              child: ChamadosExibirController(
-                chamados,
-                Color.fromARGB(250, 113, 179, 245),
-                Icons.delete,
-                '0',
-              ),
-            )
+            telas[index]
           ],
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+          currentIndex: index,
+          iconSize: 40,
+          onTap: (idx) {
+            setState(() {
+              index = idx;
+            });
+          },
+          items: [
+            BottomNavigationBarItem(
+                icon: Icon(Icons.keyboard_arrow_left_rounded), label: 'CRIADO'),
+            BottomNavigationBarItem(
+                icon: Icon(Icons.keyboard_arrow_right_rounded),
+                label: 'EM ANDAMENTO')
+          ]),
     );
   }
 }

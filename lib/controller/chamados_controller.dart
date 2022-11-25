@@ -39,7 +39,7 @@ class ChamadosController {
   void atualizar(id, status) {
     FirebaseFirestore.instance.collection('chamados').doc(id).update(
       {
-        "status": status,
+        'status': status,
       },
     );
   }

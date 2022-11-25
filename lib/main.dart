@@ -3,15 +3,12 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:app_agni/view/cadastro_app.dart';
 import 'package:app_agni/view/novo_chamado.dart';
-import 'package:app_agni/view/chat.dart';
-import 'package:app_agni/view/novo_colaborador.dart';
+
 import 'package:app_agni/view/sobre.dart';
-import 'package:app_agni/view/tela_cadastro_empresa.dart.dart';
-import 'package:app_agni/view/tela_gestor.dart';
+
+import 'package:app_agni/view/tela_principal.dart';
 import 'package:app_agni/view/tela_login.dart';
 import 'package:app_agni/view/tela_historico.dart';
-import 'package:app_agni/view/equipe.dart';
-import 'package:app_agni/view/relatorios.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
@@ -47,15 +44,10 @@ Future<void> main() async {
       routes: {
         '/': (context) => TelaLogin(),
         '/cadastroApp': (context) => CadastroApp(),
-        '/cadastroEmpresa': (context) => TelaCadastro(),
-        '/telaGestor': (context) => TelaGestor(),
+        '/telaGestor': (context) => TelaPrincipal(),
         '/sobre': (context) => Sobre(),
         '/historico': (context) => TelaHistorico(),
-        '/relatorios': (context) => TelaRelatorios(),
-        '/equipe': (context) => TelaEquipe(),
         '/chamado': (context) => NovoChamado(),
-        '/chat': (context) => TelaChat(),
-        '/novoColaborador': (context) => TelaNovoColaborador(),
       },
     ),
   );

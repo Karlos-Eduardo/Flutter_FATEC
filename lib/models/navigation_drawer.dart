@@ -25,6 +25,7 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       final imageTemporary = File(image.path);
       setState(() => this.image = imageTemporary);
     } on PlatformException catch (e) {
+      // ignore: avoid_print
       print('Falha ao carregar imagem: $e');
     }
   }
@@ -80,55 +81,19 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                     ),
                   ],
                 ),
-                FutureBuilder<String>(
-                  future: LoginController().retornarUsuarioLogado(),
-                  builder: (context, snapshot) {
-                    if (snapshot.connectionState == ConnectionState.waiting) {
-                      return CircularProgressIndicator();
-                    } else if (snapshot.connectionState ==
-                        ConnectionState.done) {
-                      if (snapshot.hasError) {
-                        return const Text('Error');
-                      } else if (snapshot.hasData) {
-                        return Text(
-                          snapshot.data.toString(),
-                          overflow: TextOverflow.ellipsis,
-                          style: GoogleFonts.roboto(
-                            fontSize: 15,
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontStyle: FontStyle.italic,
-                          ),
-                        );
-                      } else {
-                        return const Text('Empty data');
-                      }
-                    } else {
-                      return Text('State: ${snapshot.connectionState}');
-                    }
-                  },
-                ),
-                /*
-                Text(
-                  'Gestor',
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                    fontStyle: FontStyle.italic,
-                  ),
-                ),*/
+                returnNameUser(),
                 const SizedBox(
                   height: 2,
                 ),
-                Text(
+                returnEmailUser()
+                /*Text(
                   'gestor@gmail.com',
                   style: TextStyle(
                     fontSize: 10,
                     color: Colors.white,
                     fontWeight: FontWeight.w400,
                   ),
-                ),
+                ),*/
               ],
             ),
           ),
@@ -147,38 +112,6 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => {Navigator.of(context).pushNamed('/historico')},
-          ),
-          ListTile(
-            leading: Icon(Icons.forum),
-            title: Text(
-              'Chat',
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => {Navigator.of(context).pushNamed('/chat')},
-            trailing: ClipOval(
-              child: Container(
-                width: 20,
-                height: 20,
-                color: Colors.red,
-                child: Center(child: Text('8')),
-              ),
-            ),
-          ),
-          ListTile(
-            leading: Icon(Icons.groups),
-            title: Text(
-              'Equipe',
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => {Navigator.of(context).pushNamed('/equipe')},
-          ),
-          ListTile(
-            leading: Icon(Icons.description_sharp),
-            title: Text(
-              'Relatórios',
-              style: TextStyle(fontSize: 20),
-            ),
-            onTap: () => {Navigator.of(context).pushNamed('/relatorios')},
           ),
           Divider(thickness: 1),
           ListTile(
@@ -204,4 +137,64 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
       ),
     );
   }
+}
+
+returnNameUser() {
+  return FutureBuilder<String>(
+    future: LoginController().retornarUsuarioLogado(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      } else if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.hasError) {
+          return const Text('Error');
+        } else if (snapshot.hasData) {
+          return Text(
+            snapshot.data.toString(),
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.roboto(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.italic,
+            ),
+          );
+        } else {
+          return const Text('Empty data');
+        }
+      } else {
+        return Text('State: ${snapshot.connectionState}');
+      }
+    },
+  );
+}
+
+returnEmailUser() {
+  return FutureBuilder(
+    future: LoginController().retornarEmailUsuarioLogado(),
+    builder: (context, snapshot) {
+      if (snapshot.connectionState == ConnectionState.waiting) {
+        return CircularProgressIndicator();
+      } else if (snapshot.connectionState == ConnectionState.done) {
+        if (snapshot.hasError) {
+          return const Text('Error');
+        } else if (snapshot.hasData) {
+          return Text(
+            snapshot.data.toString(),
+            overflow: TextOverflow.ellipsis,
+            style: GoogleFonts.roboto(
+              fontSize: 15,
+              color: Colors.white,
+              fontWeight: FontWeight.w400,
+              fontStyle: FontStyle.italic,
+            ),
+          );
+        } else {
+          return const Text('Empty data');
+        }
+      } else {
+        return Text('State: ${snapshot.connectionState}');
+      }
+    },
+  );
 }

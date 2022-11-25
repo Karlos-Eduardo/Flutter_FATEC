@@ -9,11 +9,12 @@ import 'package:google_fonts/google_fonts.dart';
 class ChamadosExibirController extends StatefulWidget {
   final chamados;
   final cor;
+  final cor2;
   final icone;
   final status;
 
   const ChamadosExibirController(
-      this.chamados, this.cor, this.icone, this.status,
+      this.chamados, this.cor, this.cor2, this.icone, this.status,
       {Key? key})
       : super(key: key);
 
@@ -46,52 +47,101 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                       dynamic item = dados.docs[index].data();
                       String titulo = item['titulo'];
                       String descricao = item['descricao'];
+                      String statusItem = item['status'];
+
+                      switch (statusItem) {
+                        case '0':
+                          statusItem = 'Criado';
+                          break;
+                        case '1':
+                          statusItem = 'Em andamento';
+                          break;
+                        case '2':
+                          statusItem = 'Finalizado';
+                          break;
+                        default:
+                      }
 
                       return Card(
-                        color: widget.cor,
-                        child: ListTile(
-                          title: Text(
-                            titulo,
-                            style: GoogleFonts.roboto(fontSize: 22),
-                          ),
-                          subtitle: Text(
-                            descricao,
-                            style: GoogleFonts.roboto(fontSize: 18),
-                          ),
-                          trailing: Visibility(
-                            visible: widget.status != '3' ? true : false,
-                            child: IconButton(
-                              icon: Icon(widget.icone),
-                              onPressed: () {
+                          color: widget.cor2,
+                          child: ExpansionTile(
+                            childrenPadding: EdgeInsets.all(10),
+                            iconColor: Colors.black,
+                            textColor: Colors.black,
+                            title: ListTile(
+                              title: Text(
+                                titulo,
+                                style: GoogleFonts.roboto(fontSize: 22),
+                              ),
+                              subtitle: Row(
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.only(right: 5),
+                                    child: ClipOval(
+                                      child: Container(
+                                        width: 10,
+                                        height: 10,
+                                        color: widget.cor,
+                                      ),
+                                    ),
+                                  ),
+                                  Text(
+                                    statusItem,
+                                    style: GoogleFonts.roboto(fontSize: 18),
+                                  ),
+                                ],
+                              ),
+                              trailing: Visibility(
+                                visible: widget.status != '3' ? true : false,
+                                child: IconButton(
+                                  icon: (widget.status == '4')
+                                      ? Icon(Icons.delete)
+                                      : Icon(widget.icone),
+                                  onPressed: () {
+                                    if (widget.status == '4') {
+                                      ChamadosController()
+                                          .remover(dados.docs[index].id);
+                                      sucesso(context,
+                                          'Item removido com sucesso.');
+                                    } else {
+                                      ChamadosController().atualizar(
+                                        dados.docs[index].id,
+                                        widget.status,
+                                      );
+
+                                      setState(() {
+                                        widget;
+                                      });
+
+                                      sucesso(
+                                        context,
+                                        'Status atualizado com sucesso.',
+                                      );
+                                    }
+                                  },
+                                ),
+                              ),
+                              onLongPress: () {
                                 if (widget.status == '4') {
+                                } else {
                                   ChamadosController()
                                       .remover(dados.docs[index].id);
                                   sucesso(
                                       context, 'Item removido com sucesso.');
-                                } else {
-                                  ChamadosController().atualizar(
-                                    dados.docs[index].id,
-                                    widget.status,
-                                  );
-
-                                  sucesso(
-                                    context,
-                                    'Status atualizado com sucesso.',
-                                  );
                                 }
                               },
                             ),
-                          ),
-                          onLongPress: () {
-                            if (widget.status == '4') {
-                            } else {
-                              ChamadosController()
-                                  .remover(dados.docs[index].id);
-                              sucesso(context, 'Item removido com sucesso.');
-                            }
-                          },
-                        ),
-                      );
+                            children: [
+                              Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      descricao,
+                                      style: GoogleFonts.roboto(fontSize: 18),
+                                    ),
+                                  ])
+                            ],
+                          ));
                     },
                   );
                 } else {

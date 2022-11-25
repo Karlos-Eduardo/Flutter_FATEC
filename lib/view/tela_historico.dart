@@ -2,7 +2,7 @@
 
 //import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/controller/chamados_controller.dart';
-import 'package:app_agni/models/build_card.dart';
+
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/view/chamados_exibir_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +25,7 @@ class _TelaHistoricoState extends State<TelaHistorico> {
 
   @override
   Widget build(BuildContext context) {
-    double tam = MediaQuery.of(context).size.height / 10;
+    
     return Scaffold(
       drawer: NavigationDrawer(),
       appBar: AppBar(
@@ -75,6 +75,7 @@ class _TelaHistoricoState extends State<TelaHistorico> {
               //
               ChamadosExibirController(
             chamados,
+            Color.fromARGB(250, 113, 179, 245),
             Color.fromARGB(250, 113, 179, 245),
             Icons.delete,
             '4',

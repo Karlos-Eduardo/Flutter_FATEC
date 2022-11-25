@@ -79,7 +79,7 @@ class LoginController {
   //
   Future<String> retornarUsuarioLogado() async {
     var uid = FirebaseAuth.instance.currentUser!.uid;
-    var res;
+    var res = '';
     await FirebaseFirestore.instance
         .collection('usuarios')
         .where('uid', isEqualTo: uid)
@@ -94,5 +94,14 @@ class LoginController {
       },
     );
     return res;
+  }
+
+  //
+  // RETORNAR USUÁRIO LOGADO
+  //
+  Future retornarEmailUsuarioLogado() async {
+    var userEmail = FirebaseAuth.instance.currentUser!.email;
+
+    return userEmail;
   }
 }

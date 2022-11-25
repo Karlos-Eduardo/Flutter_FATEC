@@ -159,14 +159,7 @@ class _TelaLoginState extends State<TelaLogin> {
                       child: const Text('Contrate um plano'),
                     ),
                     Expanded(child: SizedBox()),
-                    /*TextButton(
-                      style: TextButton.styleFrom(
-                        textStyle: const TextStyle(fontSize: 20),
-                        foregroundColor: Colors.black,
-                      ),
-                      onPressed: () {},
-                      child: const Text('Recuperar senha'),
-                    ),*/
+                   
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
