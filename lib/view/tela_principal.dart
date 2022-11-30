@@ -1,11 +1,8 @@
-//ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/view/chamados_criados.dart';
 import 'package:app_agni/view/chamados_andamento.dart';
 import 'package:flutter/material.dart';
-
 import 'package:google_fonts/google_fonts.dart';
 
 class TelaPrincipal extends StatefulWidget {
@@ -19,15 +16,18 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
   var chamados = ChamadosController().listar('0');
 
   // Telas de Navegecao
-  final List<Widget> telas = [ChamadosCriados(), ChamadosEmAndamento()];
+  final List<Widget> telas = [
+    const ChamadosCriados(),
+    const ChamadosEmAndamento()
+  ];
   int index = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: const NavigationDrawer(),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Home',
           style: TextStyle(color: Colors.black),
         ),
@@ -40,14 +40,14 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             Container(
               height: MediaQuery.of(context).size.height * 0.2,
               width: MediaQuery.of(context).size.width * 0.8,
-              margin: EdgeInsets.only(top: 30),
+              margin: const EdgeInsets.only(top: 30),
               child: Image.asset(
                 'lib/images/home.png',
                 fit: BoxFit.fill,
               ),
             ),
             Container(
-              margin: EdgeInsets.only(top: 20),
+              margin: const EdgeInsets.only(top: 20),
               child: Text(
                 textAlign: TextAlign.center,
                 'Leva a sua equipe ao sucesso e mantém sua empresa em sincronia',
@@ -59,7 +59,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
             Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height * 0.20,
-              margin: EdgeInsets.only(bottom: 20, top: 25),
+              margin: const EdgeInsets.only(bottom: 20, top: 25),
               child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
@@ -74,12 +74,12 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
                     TextButton.icon(
                         onPressed: () =>
                             {Navigator.of(context).pushNamed('/chamado')},
-                        icon: Icon(
+                        icon: const Icon(
                           Icons.add,
                           size: 60,
                           color: Colors.black,
                         ),
-                        label: Text(''))
+                        label: const Text(''))
                   ]),
             ),
             telas[index]
@@ -94,7 +94,7 @@ class _TelaPrincipalState extends State<TelaPrincipal> {
               index = idx;
             });
           },
-          items: [
+          items: const [
             BottomNavigationBarItem(
                 icon: Icon(Icons.keyboard_arrow_left_rounded), label: 'CRIADO'),
             BottomNavigationBarItem(

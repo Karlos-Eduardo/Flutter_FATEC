@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, unused_local_variable, prefer_typing_uninitialized_variables
-
 import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/util.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -27,7 +25,7 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
   Widget build(BuildContext context) {
     return Expanded(
       child: Container(
-        padding: EdgeInsets.fromLTRB(10, 10, 10, 10),
+        padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
         child: StreamBuilder<QuerySnapshot>(
           stream: widget.chamados.snapshots(),
           builder: (context, snapshot) {
@@ -48,6 +46,7 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                       String titulo = item['titulo'];
                       String descricao = item['descricao'];
                       String statusItem = item['status'];
+                      String urgencia = item['urgencia'];
 
                       switch (statusItem) {
                         case '0':
@@ -65,7 +64,7 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                       return Card(
                           color: widget.cor2,
                           child: ExpansionTile(
-                            childrenPadding: EdgeInsets.all(10),
+                            childrenPadding: const EdgeInsets.all(10),
                             iconColor: Colors.black,
                             textColor: Colors.black,
                             title: ListTile(
@@ -73,21 +72,33 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                                 titulo,
                                 style: GoogleFonts.roboto(fontSize: 22),
                               ),
-                              subtitle: Row(
+                              subtitle: Column(
+                                mainAxisAlignment: MainAxisAlignment.start,
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 5),
-                                    child: ClipOval(
-                                      child: Container(
-                                        width: 10,
-                                        height: 10,
-                                        color: widget.cor,
-                                      ),
-                                    ),
+                                  Row(
+                                    children: [
+                                      Text('Urgência: $urgencia',
+                                          style: GoogleFonts.roboto()),
+                                    ],
                                   ),
-                                  Text(
-                                    statusItem,
-                                    style: GoogleFonts.roboto(fontSize: 18),
+                                  Row(
+                                    children: [
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(right: 5),
+                                        child: ClipOval(
+                                          child: Container(
+                                            width: 10,
+                                            height: 10,
+                                            color: widget.cor,
+                                          ),
+                                        ),
+                                      ),
+                                      Text(
+                                        statusItem,
+                                        style: GoogleFonts.roboto(fontSize: 18),
+                                      ),
+                                    ],
                                   ),
                                 ],
                               ),
@@ -95,7 +106,7 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                                 visible: widget.status != '3' ? true : false,
                                 child: IconButton(
                                   icon: (widget.status == '4')
-                                      ? Icon(Icons.delete)
+                                      ? const Icon(Icons.delete)
                                       : Icon(widget.icone),
                                   onPressed: () {
                                     if (widget.status == '4') {
@@ -121,15 +132,6 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                                   },
                                 ),
                               ),
-                              onLongPress: () {
-                                if (widget.status == '4') {
-                                } else {
-                                  ChamadosController()
-                                      .remover(dados.docs[index].id);
-                                  sucesso(
-                                      context, 'Item removido com sucesso.');
-                                }
-                              },
                             ),
                             children: [
                               Column(
@@ -145,7 +147,7 @@ class _ChamadosExibirWidgetState extends State<ChamadosExibirController> {
                     },
                   );
                 } else {
-                  return Center(
+                  return const Center(
                     child: Text('Nenhum chamado encontrado.'),
                   );
                 }

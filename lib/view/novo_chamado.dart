@@ -1,4 +1,3 @@
-//ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 import 'package:app_agni/controller/chamados_controller.dart';
 import 'package:app_agni/models/build_textformfield.dart';
 import 'package:app_agni/models/navigation_drawer.dart';
@@ -21,9 +20,9 @@ class _NovoChamadoState extends State<NovoChamado> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: const NavigationDrawer(),
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Chamado',
           style: TextStyle(color: Colors.black),
         ),
@@ -34,10 +33,10 @@ class _NovoChamadoState extends State<NovoChamado> {
           Container(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height * 0.10,
-            color: Color.fromARGB(250, 158, 203, 247),
+            color: const Color.fromARGB(250, 158, 203, 247),
             child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
-                children: [
+                children: const [
                   Text(
                     'Novo chamado',
                     style: TextStyle(fontSize: 25, color: Colors.black),
@@ -53,28 +52,29 @@ class _NovoChamadoState extends State<NovoChamado> {
               children: [
                 buildTextFormField('Título', title,
                     flotLabel: true, maxLength: true),
-                Spacer(),
+                const Spacer(),
                 Padding(
-                  padding: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
                   child: DropdownButtonFormField<String>(
                       decoration: InputDecoration(
-                          label: Text(
+                          label: const Text(
                             'Urgência',
                             style: TextStyle(color: Colors.black),
                           ),
-                          enabledBorder: OutlineInputBorder(
+                          enabledBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87)),
-                          focusedBorder: OutlineInputBorder(
+                          focusedBorder: const OutlineInputBorder(
                               borderSide: BorderSide(color: Colors.black87)),
                           focusColor: Colors.white,
                           border: OutlineInputBorder(
-                              borderSide: BorderSide(color: Colors.black45),
+                              borderSide:
+                                  const BorderSide(color: Colors.black45),
                               borderRadius: BorderRadius.circular(5))),
                       isExpanded: true,
                       iconSize: 24,
                       dropdownColor: Colors.white,
-                      iconEnabledColor: Color.fromARGB(255, 0, 0, 0),
-                      hint: Text('Selecione'),
+                      iconEnabledColor: const Color.fromARGB(255, 0, 0, 0),
+                      hint: const Text('Selecione'),
                       value: selectedItem,
                       items: items
                           .map((item) => DropdownMenuItem<String>(
@@ -82,11 +82,11 @@ class _NovoChamadoState extends State<NovoChamado> {
                           .toList(),
                       onChanged: (item) => setState(() => selectedItem = item)),
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
-                  children: [
+                  children: const [
                     Padding(
-                      padding: const EdgeInsets.only(left: 20),
+                      padding: EdgeInsets.only(left: 20),
                       child: Text(
                         'Descrição',
                         style: TextStyle(color: Colors.black, fontSize: 15),
@@ -96,19 +96,20 @@ class _NovoChamadoState extends State<NovoChamado> {
                 ),
                 Container(
                   height: MediaQuery.of(context).size.height * 0.4,
-                  padding: EdgeInsets.all(8),
-                  margin: EdgeInsets.all(8),
+                  padding: const EdgeInsets.all(8),
+                  margin: const EdgeInsets.all(8),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.black),
                       color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(20))),
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(20))),
                   child: TextField(
                     controller: description,
                     maxLines: null,
-                    style: TextStyle(fontSize: 20),
+                    style: const TextStyle(fontSize: 20),
                     cursorColor: Colors.black,
                     keyboardType: TextInputType.text,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       contentPadding: EdgeInsets.only(),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.transparent)),
@@ -119,12 +120,12 @@ class _NovoChamadoState extends State<NovoChamado> {
                     ),
                   ),
                 ),
-                Spacer(),
+                const Spacer(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      child: Text(
+                      child: const Text(
                         'Enviar',
                         style: TextStyle(fontSize: 20, color: Colors.black),
                       ),
@@ -132,7 +133,7 @@ class _NovoChamadoState extends State<NovoChamado> {
                         showCupertinoDialog(
                             context: context,
                             builder: (_) => CupertinoAlertDialog(
-                                    title: Text('Resumo'),
+                                    title: const Text('Resumo'),
                                     content: Column(
                                       children: [
                                         textAlert('Título', title),
@@ -143,13 +144,13 @@ class _NovoChamadoState extends State<NovoChamado> {
                                     ),
                                     actions: [
                                       CupertinoDialogAction(
-                                          child: Text('Voltar',
+                                          child: const Text('Voltar',
                                               style: TextStyle(
                                                   color: Colors.black)),
                                           onPressed: () =>
                                               Navigator.of(context).pop()),
                                       CupertinoDialogAction(
-                                          child: Text('Confirmar',
+                                          child: const Text('Confirmar',
                                               style: TextStyle(
                                                   color: Colors.black)),
                                           onPressed: () {
@@ -168,7 +169,7 @@ class _NovoChamadoState extends State<NovoChamado> {
                     ),
                   ],
                 ),
-                Spacer(),
+                const Spacer(),
               ],
             ),
           )
@@ -178,7 +179,7 @@ class _NovoChamadoState extends State<NovoChamado> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(
+          child: const Icon(
             Icons.arrow_back_ios,
             color: Colors.black,
           )),

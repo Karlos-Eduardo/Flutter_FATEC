@@ -1,7 +1,4 @@
-//ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'dart:io';
-
 import 'package:app_agni/controller/login_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -34,20 +31,20 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
   Widget build(BuildContext context) {
     return Drawer(
       width: MediaQuery.of(context).size.width * 0.7,
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       child: ListView(
         padding: EdgeInsets.zero,
         children: [
           DrawerHeader(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                   fit: BoxFit.fill, image: AssetImage('lib/images/drawer.png')),
             ),
-            padding: EdgeInsets.all(0),
+            padding: const EdgeInsets.all(0),
             child: Column(
               children: [
                 const SizedBox(
-                  height: 5,
+                  height: 2,
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -62,15 +59,15 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                                 height: 90,
                                 fit: BoxFit.cover,
                               ))
-                            : CircleAvatar(
+                            : const CircleAvatar(
                                 radius: 42,
                                 backgroundImage:
-                                    AssetImage('lib/images/diego.jpeg'),
+                                    AssetImage('lib/images/defaultUser.png'),
                               ),
                         Padding(
                             padding: const EdgeInsets.only(top: 56, left: 58),
                             child: IconButton(
-                              icon: Icon(
+                              icon: const Icon(
                                 Icons.add_a_photo,
                                 color: Colors.white,
                                 size: 15,
@@ -86,45 +83,37 @@ class _NavigationDrawerState extends State<NavigationDrawer> {
                   height: 2,
                 ),
                 returnEmailUser()
-                /*Text(
-                  'gestor@gmail.com',
-                  style: TextStyle(
-                    fontSize: 10,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w400,
-                  ),
-                ),*/
               ],
             ),
           ),
           ListTile(
-            leading: Icon(Icons.home_outlined),
-            title: Text(
+            leading: const Icon(Icons.home_outlined),
+            title: const Text(
               'Home',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => {Navigator.of(context).pushNamed('/telaGestor')},
           ),
           ListTile(
-            leading: Icon(Icons.pending_actions_sharp),
-            title: Text(
+            leading: const Icon(Icons.pending_actions_sharp),
+            title: const Text(
               'Histórico',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => {Navigator.of(context).pushNamed('/historico')},
           ),
-          Divider(thickness: 1),
+          const Divider(thickness: 1),
           ListTile(
-            leading: Icon(Icons.info_outline),
-            title: Text(
+            leading: const Icon(Icons.info_outline),
+            title: const Text(
               'Sobre',
               style: TextStyle(fontSize: 20),
             ),
             onTap: () => {Navigator.of(context).pushNamed('/sobre')},
           ),
           ListTile(
-            leading: Icon(Icons.logout_outlined),
-            title: Text(
+            leading: const Icon(Icons.logout_outlined),
+            title: const Text(
               'Sair',
               style: TextStyle(fontSize: 20),
             ),
@@ -144,7 +133,7 @@ returnNameUser() {
     future: LoginController().retornarUsuarioLogado(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       } else if (snapshot.connectionState == ConnectionState.done) {
         if (snapshot.hasError) {
           return const Text('Error');
@@ -174,7 +163,7 @@ returnEmailUser() {
     future: LoginController().retornarEmailUsuarioLogado(),
     builder: (context, snapshot) {
       if (snapshot.connectionState == ConnectionState.waiting) {
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       } else if (snapshot.connectionState == ConnectionState.done) {
         if (snapshot.hasError) {
           return const Text('Error');

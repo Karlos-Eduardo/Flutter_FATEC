@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:app_agni/controller/login_controller.dart';
 import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/util.dart';
@@ -39,7 +37,7 @@ class _TelaLoginState extends State<TelaLogin> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(child: SizedBox()),
+              const Expanded(child: SizedBox()),
               logo(150, 150),
               Container(
                 height: MediaQuery.of(context).size.height * 0.1,
@@ -58,22 +56,24 @@ class _TelaLoginState extends State<TelaLogin> {
                         autofocus: false,
                         keyboardType: TextInputType.emailAddress,
                         decoration: InputDecoration(
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black)),
                           labelText: 'Usuário',
-                          labelStyle: TextStyle(color: Colors.black),
+                          labelStyle: const TextStyle(color: Colors.black),
                           hintText: 'exemplo@gmail.com',
                           focusColor: Colors.black,
-                          prefixIcon: Icon(Icons.email, color: Colors.black),
+                          prefixIcon:
+                              const Icon(Icons.email, color: Colors.black),
                           suffixIcon: emailController.text.isEmpty
-                              ? SizedBox(
+                              ? const SizedBox(
                                   width: 0,
                                   height: 0,
                                 )
                               : IconButton(
-                                  icon: Icon(Icons.close, color: Colors.black),
+                                  icon: const Icon(Icons.close,
+                                      color: Colors.black),
                                   onPressed: () => emailController.clear()),
-                          border: UnderlineInputBorder(),
+                          border: const UnderlineInputBorder(),
                         ),
                       ),
                     ),
@@ -92,19 +92,21 @@ class _TelaLoginState extends State<TelaLogin> {
                         controller: password,
                         cursorColor: Colors.black,
                         decoration: InputDecoration(
-                          focusedBorder: UnderlineInputBorder(
+                          focusedBorder: const UnderlineInputBorder(
                               borderSide: BorderSide(color: Colors.black)),
-                          prefixIcon: Icon(Icons.key, color: Colors.black),
+                          prefixIcon:
+                              const Icon(Icons.key, color: Colors.black),
                           labelText: 'Senha',
                           suffixIcon: IconButton(
                               icon: isPasswordVisible
-                                  ? Icon(Icons.visibility_off,
+                                  ? const Icon(Icons.visibility_off,
                                       color: Colors.black)
-                                  : Icon(Icons.visibility, color: Colors.black),
+                                  : const Icon(Icons.visibility,
+                                      color: Colors.black),
                               onPressed: () => setState(() =>
                                   isPasswordVisible = !isPasswordVisible)),
-                          labelStyle: TextStyle(color: Colors.black),
-                          border: UnderlineInputBorder(),
+                          labelStyle: const TextStyle(color: Colors.black),
+                          border: const UnderlineInputBorder(),
                         ),
                         obscureText: isPasswordVisible,
                       ),
@@ -118,23 +120,21 @@ class _TelaLoginState extends State<TelaLogin> {
                   ElevatedButton(
                       style: ElevatedButton.styleFrom(
                           foregroundColor: Colors.black,
-                          
                           padding: EdgeInsets.symmetric(
                               horizontal:
                                   MediaQuery.of(context).size.width * 0.2,
                               vertical: 10)),
-                      child: Text(
+                      child: const Text(
                         'Entrar',
                         style: TextStyle(
                             fontSize: 16, fontWeight: FontWeight.bold),
                       ),
                       onPressed: () => LoginController()
-                      .login(context, emailController.text, password.text)
-                      ),
+                          .login(context, emailController.text, password.text)),
                   TextButton(
                     style: TextButton.styleFrom(
-                        textStyle: TextStyle(color: Colors.black)),
-                    child: Text('CADASTRE-SE',
+                        textStyle: const TextStyle(color: Colors.black)),
+                    child: const Text('CADASTRE-SE',
                         style: TextStyle(color: Colors.black)),
                     onPressed: () => {
                       Navigator.of(context).pushReplacementNamed('/cadastroApp')
@@ -144,7 +144,7 @@ class _TelaLoginState extends State<TelaLogin> {
               ),
               Expanded(
                   child: Container(
-                padding: EdgeInsets.only(bottom: 10),
+                padding: const EdgeInsets.only(bottom: 10),
                 child: Row(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
@@ -158,8 +158,7 @@ class _TelaLoginState extends State<TelaLogin> {
                       },
                       child: const Text('Contrate um plano'),
                     ),
-                    Expanded(child: SizedBox()),
-                   
+                    const Expanded(child: SizedBox()),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
@@ -182,7 +181,7 @@ class _TelaLoginState extends State<TelaLogin> {
                                     color: Colors.blueGrey.shade700,
                                   ),
                                 ),
-                                titlePadding: EdgeInsets.all(20),
+                                titlePadding: const EdgeInsets.all(20),
                                 content: SizedBox(
                                   width: 350,
                                   height: 80,
@@ -195,11 +194,11 @@ class _TelaLoginState extends State<TelaLogin> {
                                 ),
                                 backgroundColor: Colors.blueGrey.shade50,
                                 actionsPadding:
-                                    EdgeInsets.fromLTRB(0, 0, 20, 20),
+                                    const EdgeInsets.fromLTRB(0, 0, 20, 20),
                                 actions: [
                                   TextButton(
                                     style: TextButton.styleFrom(
-                                      minimumSize: Size(120, 50),
+                                      minimumSize: const Size(120, 50),
                                     ),
                                     onPressed: () {
                                       Navigator.pop(context);
@@ -216,7 +215,7 @@ class _TelaLoginState extends State<TelaLogin> {
                                     style: TextButton.styleFrom(
                                       backgroundColor:
                                           Colors.blueAccent.shade700,
-                                      minimumSize: Size(120, 50),
+                                      minimumSize: const Size(120, 50),
                                     ),
                                     onPressed: () async {
                                       if (emailController.text.isNotEmpty) {

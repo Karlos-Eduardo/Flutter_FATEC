@@ -1,5 +1,3 @@
-//ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
 import 'package:app_agni/controller/login_controller.dart';
 import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/models/text_alert.dart';
@@ -30,7 +28,7 @@ class _CadastroAppState extends State<CadastroApp> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             logo(150, 150),
             Container(
               height: 50,
@@ -50,29 +48,30 @@ class _CadastroAppState extends State<CadastroApp> {
                   cursorColor: Colors.black,
                   obscureText: isPasswordVisible,
                   decoration: InputDecoration(
-                    focusedBorder: UnderlineInputBorder(
+                    focusedBorder: const UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.black)),
-                    prefixIcon: Icon(Icons.key, color: Colors.black),
+                    prefixIcon: const Icon(Icons.key, color: Colors.black),
                     suffixIcon: IconButton(
                         icon: isPasswordVisible
-                            ? Icon(Icons.visibility_off, color: Colors.black)
-                            : Icon(Icons.visibility, color: Colors.black),
+                            ? const Icon(Icons.visibility_off,
+                                color: Colors.black)
+                            : const Icon(Icons.visibility, color: Colors.black),
                         onPressed: () => setState(
                             () => isPasswordVisible = !isPasswordVisible)),
                     labelText: 'Senha',
-                    labelStyle: TextStyle(color: Colors.black),
-                    border: UnderlineInputBorder(),
+                    labelStyle: const TextStyle(color: Colors.black),
+                    border: const UnderlineInputBorder(),
                   ),
                 ),
               ),
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             ElevatedButton(
                 style: ElevatedButton.styleFrom(
                     padding: EdgeInsets.symmetric(
                         horizontal: MediaQuery.of(context).size.width * 0.2,
                         vertical: 10)),
-                child: Text(
+                child: const Text(
                   'Cadastrar',
                   style: TextStyle(
                       fontSize: 16,
@@ -83,7 +82,7 @@ class _CadastroAppState extends State<CadastroApp> {
                   showCupertinoDialog(
                       context: context,
                       builder: (_) => CupertinoAlertDialog(
-                              title: Text('Resumo'),
+                              title: const Text('Resumo'),
                               content: Column(
                                 children: [
                                   textAlert('Nome', name),
@@ -94,16 +93,20 @@ class _CadastroAppState extends State<CadastroApp> {
                               ),
                               actions: [
                                 CupertinoDialogAction(
-                                    child: Text('Voltar',
+                                    child: const Text('Voltar',
                                         style: TextStyle(color: Colors.black)),
                                     onPressed: () =>
                                         Navigator.of(context).pop()),
                                 CupertinoDialogAction(
-                                    child: Text('Confirmar',
+                                    child: const Text('Confirmar',
                                         style: TextStyle(color: Colors.black)),
                                     onPressed: () {
-                                      LoginController().criarConta(context,
-                                          name.text, email.text, password.text,telephone.text);
+                                      LoginController().criarConta(
+                                          context,
+                                          name.text,
+                                          email.text,
+                                          password.text,
+                                          telephone.text);
 
                                       Navigator.of(context).pop();
                                       name.clear();
@@ -111,12 +114,12 @@ class _CadastroAppState extends State<CadastroApp> {
                                       email.clear();
                                       password.clear();
                                       Navigator.of(context)
-                                      .pushReplacementNamed('/');
+                                          .pushReplacementNamed('/');
                                     }),
                               ]),
                       barrierDismissible: false);
                 }),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
           ],
         ),
       ),
@@ -136,13 +139,13 @@ class _CadastroAppState extends State<CadastroApp> {
           cursorColor: Colors.black,
           //obscureText: isPasswordVisible,
           decoration: InputDecoration(
-            focusedBorder: UnderlineInputBorder(
+            focusedBorder: const UnderlineInputBorder(
                 borderSide: BorderSide(color: Colors.black)),
             prefixIcon: Icon(icone, color: Colors.black),
             labelText: label,
             hintText: hintText,
-            labelStyle: TextStyle(color: Colors.black),
-            border: UnderlineInputBorder(),
+            labelStyle: const TextStyle(color: Colors.black),
+            border: const UnderlineInputBorder(),
           ),
         ),
       ),

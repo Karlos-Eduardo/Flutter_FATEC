@@ -1,8 +1,4 @@
-//ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-//import 'package:app_agni/models/logo.dart';
 import 'package:app_agni/controller/chamados_controller.dart';
-
 import 'package:app_agni/models/navigation_drawer.dart';
 import 'package:app_agni/view/chamados_exibir_widget.dart';
 import 'package:flutter/material.dart';
@@ -25,12 +21,11 @@ class _TelaHistoricoState extends State<TelaHistorico> {
 
   @override
   Widget build(BuildContext context) {
-    
     return Scaffold(
-      drawer: NavigationDrawer(),
+      drawer: const NavigationDrawer(),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(166, 0, 180, 216),
-        actions: <Widget>[
+        backgroundColor: const Color.fromARGB(166, 0, 180, 216),
+        actions: const <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 15),
               child: Icon(
@@ -52,31 +47,31 @@ class _TelaHistoricoState extends State<TelaHistorico> {
             controller: search,
             cursorColor: Colors.black,
             decoration: InputDecoration(
-                focusedBorder: OutlineInputBorder(
+                focusedBorder: const OutlineInputBorder(
                     borderSide: BorderSide(color: Colors.black)),
                 focusColor: Colors.white,
-                suffixIcon: Icon(Icons.search, color: Colors.black87),
+                suffixIcon: const Icon(Icons.search, color: Colors.black87),
                 label: Text(
                   'Pesquisa',
                   style: GoogleFonts.roboto(),
                 ),
-                labelStyle: TextStyle(color: Colors.black87),
+                labelStyle: const TextStyle(color: Colors.black87),
                 border: OutlineInputBorder(
-                    borderSide: BorderSide(color: Colors.red),
+                    borderSide: const BorderSide(color: Colors.red),
                     borderRadius: BorderRadius.circular(2))),
           ),
         ),
         Container(
           height: MediaQuery.of(context).size.height * 0.70 - 16,
-          margin: EdgeInsets.all(15),
+          margin: const EdgeInsets.all(15),
           child:
               //
               // EXIBIR TAREFAS
               //
               ChamadosExibirController(
             chamados,
-            Color.fromARGB(250, 113, 179, 245),
-            Color.fromARGB(250, 113, 179, 245),
+            const Color.fromARGB(250, 113, 179, 245),
+            const Color.fromARGB(250, 113, 179, 245),
             Icons.delete,
             '4',
           ),
@@ -86,7 +81,7 @@ class _TelaHistoricoState extends State<TelaHistorico> {
           onPressed: () {
             Navigator.pop(context);
           },
-          child: Icon(Icons.arrow_back_ios, color: Colors.black)),
+          child: const Icon(Icons.arrow_back_ios, color: Colors.black)),
     );
   }
 }

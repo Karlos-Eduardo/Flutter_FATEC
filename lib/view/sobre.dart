@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-//import 'package:app_agni/models/logo.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,8 +12,8 @@ class Sobre extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:
-            Text('Sobre o aplicativo', style: TextStyle(color: Colors.black)),
+        title: const Text('Sobre o aplicativo',
+            style: TextStyle(color: Colors.black)),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
@@ -24,9 +21,9 @@ class Sobre extends StatelessWidget {
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Container(
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                     borderRadius: BorderRadius.all(
                   Radius.circular(100),
                 )),
@@ -34,7 +31,7 @@ class Sobre extends StatelessWidget {
                 width: 150,
                 height: 150,
                 child: Image.asset('lib/images/logom.png')),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Column(
               children: [
                 Text(
@@ -44,8 +41,8 @@ class Sobre extends StatelessWidget {
                       fontWeight: FontWeight.bold, fontSize: 25),
                 ),
                 Container(
-                  margin: EdgeInsets.all(10),
-                  child: Text(
+                  margin: const EdgeInsets.all(10),
+                  child: const Text(
                     'O aplicativo auxilia o gestor para a tomada de decisão e para gerenciar a equipe técnica responsável. Verificando os status do chamado e o tempo gasto para resolver o problema. O sistema de chamados permite ao gestor manter um controle maior. Oferece, também, indicadores de desempenho (KPls), que podem ser utilizados como métricas para avaliação do departamento, para acompanhamento individual do técnico ou da equipe.',
                     textAlign: TextAlign.justify,
                     style: TextStyle(
@@ -55,7 +52,7 @@ class Sobre extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
@@ -78,14 +75,15 @@ class Sobre extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.link),
+                        const Icon(Icons.link),
                         TextButton(
                           style: TextButton.styleFrom(
-                            textStyle: TextStyle(fontWeight: FontWeight.bold),
+                            textStyle:
+                                const TextStyle(fontWeight: FontWeight.bold),
                             foregroundColor: Colors.blue.shade900,
                           ),
                           onPressed: _launchUrl2,
-                          child: Text('Github'),
+                          child: const Text('Github'),
                         ),
                       ],
                     ),
@@ -99,21 +97,22 @@ class Sobre extends StatelessWidget {
                       width: 100,
                       height: 100,
                     )),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 8),
+                    const Padding(
+                      padding: EdgeInsets.only(top: 8),
                       child: Text('Karlos Nunes'),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Icon(Icons.link),
+                        const Icon(Icons.link),
                         TextButton(
                           style: TextButton.styleFrom(
-                            textStyle: TextStyle(fontWeight: FontWeight.bold),
+                            textStyle:
+                                const TextStyle(fontWeight: FontWeight.bold),
                             foregroundColor: Colors.blue.shade900,
                           ),
                           onPressed: _launchUrl1,
-                          child: Text('Github'),
+                          child: const Text('Github'),
                         ),
                       ],
                     ),
@@ -121,7 +120,7 @@ class Sobre extends StatelessWidget {
                 ),
               ],
             ),
-            Expanded(child: SizedBox()),
+            const Expanded(child: SizedBox()),
           ]),
         ),
       ),
